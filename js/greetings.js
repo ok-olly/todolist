@@ -11,13 +11,6 @@ const onLoginSubmit = e => {
   const username = loginInput.value;
   localStorage.setItem(USERNAME_KEY, username);
   paintGreetings(username);
-
-  // html 파일 속 input tag에 required과 maxlength="15"를 추가하면 아래의 js 코드 기능을 브라우저가 해준다.
-  //   if (username === '') {
-  //     alert('Please write your name.');
-  //   } else if (username.length > 15) {
-  //     alert('Your name is too long.');
-  //   }
 };
 
 const paintGreetings = username => {
