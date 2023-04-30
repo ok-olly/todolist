@@ -11,13 +11,17 @@ const saveToDos = () => {
 };
 
 const deleteToDo = e => {
-  e.target.parentElement.remove();
+  const li = e.target.parentElement;
+  li.remove();
+  toDos = toDos.filter(toDo => toDo.id !== parseInt(li.id));
+  saveToDos();
 };
 
 const paintToDo = newToDo => {
   const li = document.createElement('li');
+  li.id = newToDo.id;
   const span = document.createElement('span');
-  span.innerText = newToDo;
+  span.innerText = newToDo.text;
 
   const button = document.createElement('button');
   button.innerText = '❌';
@@ -32,8 +36,9 @@ const handleToDoSubmit = e => {
   e.preventDefault();
   const newToDo = toDoInput.value;
   toDoInput.value = '';
-  toDos.push(newToDo);
-  paintToDo(newToDo);
+  const newTodoObj = { text: newToDo, id: Date.now() };
+  toDos.push(newTodoObj);
+  paintToDo(newTodoObj);
   saveToDos();
 };
 
