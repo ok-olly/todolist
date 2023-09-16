@@ -19,6 +19,7 @@ function Login() {
   function handleClick() {
     setIsLogin(false);
     localStorage.removeItem('savedUserName');
+    localStorage.removeItem('savedToDos');
     setUserName('');
   }
 
