@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import TodoList from './TodoList';
 
 function Todo() {
   const [newToDo, setNewToDo] = useState('');
@@ -17,11 +18,14 @@ function Todo() {
   }
 
   function handleDelete(e) {
-    setToDos(toDos => toDos.filter(toDo => toDo.id !== +e.target.id));
+    setToDos(toDos =>
+      toDos.filter(toDo => toDo.id !== +e.target.parentElement.id)
+    );
   }
 
   useEffect(() => {
     localStorage.setItem('savedToDos', JSON.stringify(toDos));
+    console.log('렌더', toDos);
   }, [toDos]);
 
   return (
@@ -38,12 +42,13 @@ function Todo() {
       <ul>
         {toDos.length !== 0 &&
           toDos.map(toDo => (
-            <li key={toDo.id}>
-              <span>{toDo.text}</span>
-              <button onClick={handleDelete} id={toDo.id}>
-                ❌
-              </button>
-            </li>
+            <TodoList
+              key={toDo.id}
+              toDo={toDo}
+              handleDelete={handleDelete}
+              toDos={toDos}
+              setToDos={setToDos}
+            />
           ))}
       </ul>
     </div>
