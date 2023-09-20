@@ -1,20 +1,24 @@
 import { useEffect, useState } from 'react';
 import TodoList from './TodoList';
 
+const initialState = [
+  { id: 123, text: '점심에 떡볶이 먹기😋', checked: true },
+  { id: 456, text: '저녁에는 치킨 먹기😋', checked: false },
+];
+
 function Todo() {
   const [newToDo, setNewToDo] = useState('');
   const [toDos, setToDos] = useState(
-    JSON.parse(localStorage.getItem('savedToDos')) || []
+    JSON.parse(localStorage.getItem('savedToDos')) || initialState
   );
-
-  function handleChange(e) {
-    setNewToDo(e.target.value);
-  }
 
   function handleSubmit(e) {
     e.preventDefault();
     setNewToDo('');
-    setToDos(toDos => [...toDos, { text: newToDo, id: Date.now() }]);
+    setToDos(toDos => [
+      ...toDos,
+      { id: Date.now(), text: newToDo, checked: false },
+    ]);
   }
 
   function handleDelete(e) {
@@ -23,9 +27,30 @@ function Todo() {
     );
   }
 
+  function handleUpdate(id, updatedToDo) {
+    setToDos(
+      toDos.map(td => {
+        if (td.id === id) {
+          return { id: td.id, text: updatedToDo, checked: td.checked };
+        }
+        return td;
+      })
+    );
+  }
+
+  function handleCheck(id, checked) {
+    setToDos(
+      toDos.map(td => {
+        if (td.id === id) {
+          return { id: td.id, text: td.text, checked: checked };
+        }
+        return td;
+      })
+    );
+  }
+
   useEffect(() => {
     localStorage.setItem('savedToDos', JSON.stringify(toDos));
-    console.log('렌더', toDos);
   }, [toDos]);
 
   return (
@@ -36,7 +61,7 @@ function Todo() {
           placeholder="Write a To Do and Press Enter"
           required
           value={newToDo}
-          onChange={handleChange}
+          onChange={e => setNewToDo(e.target.value)}
         />
       </form>
       <ul>
@@ -46,8 +71,8 @@ function Todo() {
               key={toDo.id}
               toDo={toDo}
               handleDelete={handleDelete}
-              toDos={toDos}
-              setToDos={setToDos}
+              handleUpdate={handleUpdate}
+              handleCheck={handleCheck}
             />
           ))}
       </ul>

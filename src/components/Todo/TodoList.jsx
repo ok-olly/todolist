@@ -1,44 +1,53 @@
 import { useState } from 'react';
 
-function TodoList({ toDo, handleDelete, toDos, setToDos }) {
-  const [updateToDo, setUpdateToDo] = useState(toDo.text);
+function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
+  const [updatedToDo, setUpdatedToDo] = useState(toDo.text);
   const [isUpdating, setIsUpdating] = useState(false);
-
-  function handleSubmit(e) {
-    setIsUpdating(false);
-
-    setToDos(
-      toDos.map(td => {
-        if (td.id === +e.target.parentElement.id) {
-          return { text: updateToDo, id: td.id };
-        }
-        return td;
-      })
-    );
-  }
+  const [checked, setChecked] = useState(toDo.checked);
 
   return (
     <li id={toDo.id}>
-      <span>{toDo.text}</span>
+      <input
+        type="checkbox"
+        checked={checked}
+        onChange={() => {
+          handleCheck(toDo.id, !checked);
+          setChecked(!checked);
+        }}
+      />
+
       {isUpdating ? (
         <>
           <input
             type="text"
-            value={updateToDo}
+            value={updatedToDo}
             onChange={e => {
-              setUpdateToDo(e.target.value);
+              setUpdatedToDo(e.target.value);
             }}
           />
-          <button onClick={handleSubmit}>💾</button>
+          <button
+            onClick={e => {
+              e.preventDefault();
+              setIsUpdating(false);
+              handleUpdate(toDo.id, updatedToDo);
+            }}
+          >
+            💾
+          </button>
         </>
       ) : (
-        <button
-          onClick={() => {
-            setIsUpdating(!isUpdating);
-          }}
-        >
-          ✏️
-        </button>
+        <>
+          <span style={checked ? { textDecoration: 'line-through' } : {}}>
+            {toDo.text}
+          </span>
+          <button
+            onClick={() => {
+              setIsUpdating(!isUpdating);
+            }}
+          >
+            ✏️
+          </button>
+        </>
       )}
 
       <button onClick={handleDelete}>❌</button>
