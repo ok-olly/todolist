@@ -6,7 +6,7 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
   const [checked, setChecked] = useState(toDo.checked);
 
   return (
-    <li id={toDo.id}>
+    <li id={toDo.id} className="relative border-b-2">
       <input
         type="checkbox"
         checked={checked}
@@ -14,6 +14,7 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
           handleCheck(toDo.id, !checked);
           setChecked(!checked);
         }}
+        className="mr-2"
       />
 
       {isUpdating ? (
@@ -24,6 +25,8 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
             onChange={e => {
               setUpdatedToDo(e.target.value);
             }}
+            size={21}
+            className="rounded-sm"
           />
           <button
             onClick={e => {
@@ -31,26 +34,30 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
               setIsUpdating(false);
               handleUpdate(toDo.id, updatedToDo);
             }}
+            className="absolute right-5"
           >
             💾
           </button>
         </>
       ) : (
         <>
-          <span style={checked ? { textDecoration: 'line-through' } : {}}>
+          <span className={checked ? 'line-through italic' : ''}>
             {toDo.text}
           </span>
           <button
             onClick={() => {
               setIsUpdating(!isUpdating);
             }}
+            className="absolute right-5"
           >
             ✏️
           </button>
         </>
       )}
 
-      <button onClick={handleDelete}>❌</button>
+      <button onClick={handleDelete} className="absolute right-0">
+        ❌
+      </button>
     </li>
   );
 }

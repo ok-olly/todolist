@@ -16,11 +16,17 @@ function Login() {
     localStorage.setItem('savedUserName', userName);
   }
 
-  function handleClick() {
-    setIsLogin(false);
-    localStorage.removeItem('savedUserName');
-    localStorage.removeItem('savedToDos');
-    setUserName('');
+  function handleLogOut() {
+    const confirmLogout = confirm(
+      'Do you really want to log out? Logging out will erase your saved lists.',
+    );
+
+    if (confirmLogout) {
+      setIsLogin(false);
+      localStorage.removeItem('savedUserName');
+      localStorage.removeItem('savedToDos');
+      setUserName('');
+    }
   }
 
   useEffect(function () {
@@ -34,12 +40,12 @@ function Login() {
   return (
     <div>
       {isLogin ? (
-        <>
-          <Greeting userName={userName} handleClick={handleClick} />
+        <div className="flex flex-col p-3 gap-3 rounded-md items-center h-80 w-80 bg-yellow-200">
+          <Greeting userName={userName} handleLogOut={handleLogOut} />
           <Todo />
-        </>
+        </div>
       ) : (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="my-20">
           <input
             required
             maxLength="15"
@@ -47,6 +53,7 @@ function Login() {
             placeholder="What is your name?"
             value={userName}
             onChange={handleChange}
+            className="text-2xl px-3 py-2 rounded-md bg-stone-200 placeholder:text-stone-600"
           />
         </form>
       )}

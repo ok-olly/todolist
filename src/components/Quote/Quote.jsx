@@ -2,15 +2,19 @@ import { useEffect, useState } from 'react';
 
 function Quote() {
   const [quote, setQuote] = useState(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [hasError, setHasError] = useState(false);
 
   useEffect(() => {
     const getAPI = async () => {
       try {
         const response = await fetch('https://type.fit/api/quotes');
         const data = await response.json();
-        const num = Math.floor(Math.random() * data.length - 1);
+        const num = Math.floor(Math.random() * data.length);
         setQuote(data[num]);
+        setIsLoading(false);
       } catch (err) {
+        setHasError(true);
         console.log(err);
       }
     };
@@ -18,12 +22,18 @@ function Quote() {
   }, []);
 
   return (
-    <div>
-      {quote && (
+    <div className="flex flex-col text-sm w-56">
+      {hasError && <span>Something went wrong...</span>}
+      {isLoading ? (
+        <span className="loader"></span>
+      ) : (
         <>
-          <span>{quote.text}</span>
+          <span className="italic font-serif">{quote.text}</span>
           <span>
-            {quote.author.includes(', type.fit')
+            -{' '}
+            {quote.author === 'type.fit'
+              ? 'Dale Carnegie'
+              : quote.author.includes(', type.fit')
               ? quote.author.split(', ', 1)
               : quote.author}
           </span>

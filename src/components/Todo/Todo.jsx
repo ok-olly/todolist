@@ -3,13 +3,13 @@ import TodoList from './TodoList';
 
 const initialState = [
   { id: 123, text: '점심에 떡볶이 먹기😋', checked: true },
-  { id: 456, text: '저녁에는 치킨 먹기😋', checked: false },
+  { id: 456, text: '저녁에는 치킨 먹기🍗', checked: false },
 ];
 
 function Todo() {
   const [newToDo, setNewToDo] = useState('');
   const [toDos, setToDos] = useState(
-    JSON.parse(localStorage.getItem('savedToDos')) || initialState
+    JSON.parse(localStorage.getItem('savedToDos')) || initialState,
   );
 
   function handleSubmit(e) {
@@ -23,7 +23,7 @@ function Todo() {
 
   function handleDelete(e) {
     setToDos(toDos =>
-      toDos.filter(toDo => toDo.id !== +e.target.parentElement.id)
+      toDos.filter(toDo => toDo.id !== +e.target.parentElement.id),
     );
   }
 
@@ -34,7 +34,7 @@ function Todo() {
           return { id: td.id, text: updatedToDo, checked: td.checked };
         }
         return td;
-      })
+      }),
     );
   }
 
@@ -45,7 +45,7 @@ function Todo() {
           return { id: td.id, text: td.text, checked: checked };
         }
         return td;
-      })
+      }),
     );
   }
 
@@ -55,16 +55,18 @@ function Todo() {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className="mb-3">
         <input
           type="text"
-          placeholder="Write a To Do and Press Enter"
+          placeholder="Write a To Do and Press Enter :)"
           required
           value={newToDo}
           onChange={e => setNewToDo(e.target.value)}
+          size={26}
+          className="px-3 py-1 rounded-sm"
         />
       </form>
-      <ul>
+      <ul className="flex flex-col gap-1 overflow-auto h-48">
         {toDos.length !== 0 &&
           toDos.map(toDo => (
             <TodoList
