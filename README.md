@@ -1,7 +1,7 @@
 # Welcome to My To-Do List Project!
 
 <p align='center'>
-<img src="public/img/screenshot.png">
+<img src="public/img/screenshot.png" height='250px'>
 </p>
 
 <p align='center' width='100%'>
