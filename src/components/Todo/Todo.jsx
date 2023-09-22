@@ -22,9 +22,12 @@ function Todo() {
   }
 
   function handleDelete(e) {
-    setToDos(toDos =>
-      toDos.filter(toDo => toDo.id !== +e.target.parentElement.id),
-    );
+    const confirmDelete = confirm('Delete this item from the list?');
+
+    if (confirmDelete)
+      setToDos(toDos =>
+        toDos.filter(toDo => toDo.id !== +e.target.parentElement.id),
+      );
   }
 
   function handleUpdate(id, updatedToDo) {
@@ -54,19 +57,19 @@ function Todo() {
   }, [toDos]);
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} className="mb-3">
+    <div className="w-full">
+      <form onSubmit={handleSubmit} className="mb-3 text-center">
         <input
           type="text"
           placeholder="Write a To Do and Press Enter :)"
           required
           value={newToDo}
           onChange={e => setNewToDo(e.target.value)}
-          size={26}
-          className="px-3 py-1 rounded-sm"
+          size={24}
+          className="rounded-sm px-3 py-1"
         />
       </form>
-      <ul className="flex flex-col gap-1 overflow-auto h-48">
+      <ul className="flex h-48 flex-col gap-1 overflow-auto">
         {toDos.length !== 0 &&
           toDos.map(toDo => (
             <TodoList

@@ -3,7 +3,7 @@ import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 // eslint-disable-next-line react/prop-types
 function Greeting({ userName, handleLogOut }) {
   return (
-    <div className="flex justify-between w-64 text-stone-800">
+    <div className="flex w-full justify-between text-stone-800">
       <button onClick={handleLogOut}>
         <LogoutRoundedIcon fontSize="small" />
       </button>

@@ -53,7 +53,7 @@ function Weather() {
   }, [data]);
 
   return (
-    <div className="flex flex-col text-sm items-end">
+    <div className="flex flex-col items-end text-sm">
       {hasError && <span>Something went wrong...</span>}
       {isLoading ? (
         <span className="loader"></span>

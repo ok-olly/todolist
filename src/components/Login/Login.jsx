@@ -38,9 +38,9 @@ function Login() {
   }, []);
 
   return (
-    <div>
+    <div className="w-full">
       {isLogin ? (
-        <div className="flex flex-col p-3 gap-3 rounded-md items-center h-80 w-80 bg-yellow-200">
+        <div className="flex h-80 flex-col items-center gap-3 rounded-md bg-yellow-200 px-5 py-3">
           <Greeting userName={userName} handleLogOut={handleLogOut} />
           <Todo />
         </div>
@@ -53,7 +53,7 @@ function Login() {
             placeholder="What is your name?"
             value={userName}
             onChange={handleChange}
-            className="text-2xl px-3 py-2 rounded-md bg-stone-200 placeholder:text-stone-600"
+            className="rounded-md bg-stone-200 px-3 py-2 text-2xl placeholder:text-stone-600"
           />
         </form>
       )}

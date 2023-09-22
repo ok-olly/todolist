@@ -42,8 +42,8 @@ function Clock() {
   }, []);
 
   return (
-    <div className="flex items-center w-80 text-base justify-between text-stone-800">
-      <div className="flex gap-3 items-center">
+    <div className="flex w-full items-center justify-between text-base text-stone-800">
+      <div className="flex items-center gap-3">
         <span className="text-5xl font-semibold">{date}</span>
         <div className="flex flex-col">
           <span className="uppercase">{month}</span>
@@ -51,7 +51,7 @@ function Clock() {
         </div>
       </div>
 
-      <div className="flex flex-col items-end w-24">
+      <div className="flex w-28 flex-col items-end">
         <span className="uppercase ">{day}</span>
         <span>{time}</span>
       </div>
