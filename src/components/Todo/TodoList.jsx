@@ -33,6 +33,7 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
               setIsUpdating(false);
               handleUpdate(toDo.id, updatedToDo);
             }}
+            className="text-sm"
           >
             💾
           </button>
@@ -46,13 +47,16 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
             onClick={() => {
               setIsUpdating(!isUpdating);
             }}
+            className="text-sm"
           >
             ✏️
           </button>
         </>
       )}
 
-      <button onClick={handleDelete}>❌</button>
+      <button onClick={handleDelete} className="text-sm">
+        ❌
+      </button>
     </li>
   );
 }

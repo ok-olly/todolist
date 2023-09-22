@@ -23,8 +23,9 @@ function Quote() {
 
   return (
     <div className="flex w-56 flex-col text-sm">
-      {hasError && <span>Something went wrong...</span>}
-      {isLoading ? (
+      {hasError ? (
+        <span>Something went wrong...</span>
+      ) : isLoading ? (
         <span className="loader"></span>
       ) : (
         <>

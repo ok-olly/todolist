@@ -30,8 +30,7 @@ function Weather() {
   }
 
   function onGeoError() {
-    alert("Can't find you");
-    setIsLoading(false);
+    setHasError(true);
   }
 
   useEffect(() => {
@@ -54,8 +53,9 @@ function Weather() {
 
   return (
     <div className="flex flex-col items-end text-sm">
-      {hasError && <span>Something went wrong...</span>}
-      {isLoading ? (
+      {hasError ? (
+        <span>Something went wrong...</span>
+      ) : isLoading ? (
         <span className="loader"></span>
       ) : (
         <>
