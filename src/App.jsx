@@ -18,7 +18,7 @@ export function App() {
       <div className="absolute bottom-3">
         <a href="https://github.com/ok-olly/todolist" target="_blank">
           <span className="mr-1 text-sm text-stone-500">
-            made by Jeongok Lee
+            made by Olivia Lee
           </span>
           <GitHubIcon fontSize="small" sx={{ color: '#78716c' }} />
         </a>

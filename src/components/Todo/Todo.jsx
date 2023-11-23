@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import TodoList from './TodoList';
 
 const initialState = [
@@ -11,6 +11,26 @@ function Todo() {
   const [toDos, setToDos] = useState(
     JSON.parse(localStorage.getItem('savedToDos')) || initialState,
   );
+  const [selectedToDo, setselectedToDo] = useState(null);
+
+  const wrapperRef = useRef(null);
+
+  useEffect(() => {
+    const handleOutsideClick = event => {
+      // wrapperRef.current가 존재하고, 클릭된 요소가 wrapperRef.current의 하위 요소가 아닌 경우
+      if (wrapperRef.current && !wrapperRef.current.contains(event.target)) {
+        setselectedToDo(null);
+      }
+    };
+
+    // 이벤트 리스너 추가
+    document.addEventListener('mousedown', handleOutsideClick);
+
+    // 컴포넌트가 언마운트될 때 이벤트 리스너 제거
+    return () => {
+      document.removeEventListener('mousedown', handleOutsideClick);
+    };
+  }, []);
 
   function handleSubmit(e) {
     e.preventDefault();
@@ -52,12 +72,16 @@ function Todo() {
     );
   }
 
+  function handleIsOpen(todo) {
+    setselectedToDo(cur => (cur?.id === todo.id ? null : todo));
+  }
+
   useEffect(() => {
     localStorage.setItem('savedToDos', JSON.stringify(toDos));
   }, [toDos]);
 
   return (
-    <div className="w-full">
+    <div className="w-full" ref={wrapperRef}>
       <form onSubmit={handleSubmit} className="mb-3 text-center">
         <input
           type="text"
@@ -78,6 +102,8 @@ function Todo() {
               handleDelete={handleDelete}
               handleUpdate={handleUpdate}
               handleCheck={handleCheck}
+              selectedToDo={selectedToDo}
+              handleIsOpen={handleIsOpen}
             />
           ))}
       </ul>

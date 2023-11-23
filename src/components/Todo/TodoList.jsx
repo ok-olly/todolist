@@ -1,9 +1,16 @@
 import { useState } from 'react';
 
-function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
+function TodoList({
+  toDo,
+  handleDelete,
+  handleUpdate,
+  handleCheck,
+  selectedToDo,
+  handleIsOpen,
+}) {
   const [updatedToDo, setUpdatedToDo] = useState(toDo.text);
-  const [isUpdating, setIsUpdating] = useState(false);
   const [checked, setChecked] = useState(toDo.checked);
+  const isSelected = selectedToDo?.id === toDo.id;
 
   return (
     <li id={toDo.id} className="flex items-center gap-1.5 border-b-2">
@@ -16,7 +23,7 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
         }}
       />
 
-      {isUpdating ? (
+      {isSelected ? (
         <>
           <input
             type="text"
@@ -30,7 +37,7 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
           <button
             onClick={e => {
               e.preventDefault();
-              setIsUpdating(false);
+              handleIsOpen(toDo);
               handleUpdate(toDo.id, updatedToDo);
             }}
             className="text-sm"
@@ -45,7 +52,7 @@ function TodoList({ toDo, handleDelete, handleUpdate, handleCheck }) {
           </span>
           <button
             onClick={() => {
-              setIsUpdating(!isUpdating);
+              handleIsOpen(toDo);
             }}
             className="text-sm"
           >
