@@ -53,7 +53,7 @@ function Login() {
             placeholder="What is your name?"
             value={userName}
             onChange={handleChange}
-            className="rounded-md bg-stone-200 px-3 py-2 text-2xl placeholder:text-stone-600"
+            className="w-full rounded-md bg-stone-200 px-3 py-2 text-center text-2xl placeholder:text-stone-600"
           />
         </form>
       )}
