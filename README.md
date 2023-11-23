@@ -40,5 +40,7 @@ $ npm install
 $ npm run dev
 ```
 
-> [olivia-jeongok-lee@gmail.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
+<!-- > [olivia.jeongok.lee@gmail.com]() &nbsp;&middot;&nbsp; -->
+
+> olivia.jeongok.lee@gmail.com &nbsp;&middot;&nbsp;
 > GitHub [@ok-olly](https://github.com/ok-olly)
