@@ -37,7 +37,7 @@ $ cd todolist
 $ npm install
 
 # Run the app
-$ npm dev
+$ npm run dev
 ```
 
 > [olivia-jeongok-lee@gmail.com](https://www.amitmerchant.com) &nbsp;&middot;&nbsp;
