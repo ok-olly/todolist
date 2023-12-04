@@ -1,20 +1,11 @@
 # Welcome to My To-Do List Project!
 
-<!-- <p align='center'>
-<img src="public/img/screenshot.png" height='400px'>
-</p> -->
-
 ![screenshot](https://github.com/ok-olly/todolist/assets/91643621/ab3b0775-4186-410c-9908-2a422554c89a)
 
 ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![JavaScript](https://img.shields.io/badge/javascript-%23323330.svg?style=for-the-badge&logo=javascript&logoColor=%23F7DF1E)
 ![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
 ![Vite](https://img.shields.io/badge/vite-%23646CFF.svg?style=for-the-badge&logo=vite&logoColor=white)
-
-<!-- <p align='center' width='100%'>
-<img src='https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/React-icon.svg/1024px-React-icon.svg.png' height='30px'>
-<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d5/Tailwind_CSS_Logo.svg/1024px-Tailwind_CSS_Logo.svg.png?20230715030042" height="30px">
-<img src="https://upload.wikimedia.org/wikipedia/commons/f/f1/Vitejs-logo.svg" height="30px">
-</p> -->
 
 ## https://teenytiny-todolist.netlify.app
 
